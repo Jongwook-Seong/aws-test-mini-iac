@@ -60,7 +60,7 @@ resource "aws_security_group_rule" "web_sg_ingress_rule_http_from_alb" {
   type                     = "ingress"
   from_port                = 80
   to_port                  = 80
-  protocol                 = "http"
+  protocol                 = "tcp"
   source_security_group_id = aws_security_group.alb_sg.id
   security_group_id        = aws_security_group.web_sg.id
 }
@@ -80,7 +80,7 @@ resource "aws_security_group_rule" "web_sg_ingress_rule_https_from_alb" {
   type                     = "ingress"
   from_port                = 443
   to_port                  = 443
-  protocol                 = "https"
+  protocol                 = "tcp"
   source_security_group_id = aws_security_group.alb_sg.id
   security_group_id        = aws_security_group.web_sg.id
 }
@@ -90,7 +90,7 @@ resource "aws_security_group_rule" "web_sg_ingress_rule_8080" {
   type              = "ingress"
   from_port         = 8080
   to_port           = 8080
-  protocol          = "http"
+  protocol          = "tcp"
   cidr_blocks       = [var.cidr_blocks.my_public_ip_cidr_block]
   security_group_id = aws_security_group.web_sg.id
 }
@@ -100,7 +100,7 @@ resource "aws_security_group_rule" "web_sg_ingress_rule_8080_from_alb" {
   type                     = "ingress"
   from_port                = 8080
   to_port                  = 8080
-  protocol                 = "http"
+  protocol                 = "tcp"
   source_security_group_id = aws_security_group.alb_sg.id
   security_group_id        = aws_security_group.web_sg.id
 }
@@ -110,7 +110,7 @@ resource "aws_security_group_rule" "web_sg_ingress_rule_8929" {
   type              = "ingress"
   from_port         = 8929
   to_port           = 8929
-  protocol          = "http"
+  protocol          = "tcp"
   cidr_blocks       = [var.cidr_blocks.my_public_ip_cidr_block]
   security_group_id = aws_security_group.web_sg.id
 }
@@ -120,7 +120,7 @@ resource "aws_security_group_rule" "web_sg_ingress_rule_8929_from_alb" {
   type                     = "ingress"
   from_port                = 8929
   to_port                  = 8929
-  protocol                 = "http"
+  protocol                 = "tcp"
   source_security_group_id = aws_security_group.alb_sg.id
   security_group_id        = aws_security_group.web_sg.id
 }
@@ -342,7 +342,7 @@ resource "aws_security_group_rule" "alb_sg_ingress_rule_80" {
   type              = "ingress"
   from_port         = 80
   to_port           = 80
-  protocol          = "http"
+  protocol          = "tcp"
   cidr_blocks       = [var.cidr_blocks.any_ip_cidr_block]
   security_group_id = aws_security_group.alb_sg.id
 }
@@ -352,7 +352,7 @@ resource "aws_security_group_rule" "alb_sg_ingress_rule_443" {
   type              = "ingress"
   from_port         = 443
   to_port           = 443
-  protocol          = "https"
+  protocol          = "tcp"
   cidr_blocks       = [var.cidr_blocks.any_ip_cidr_block]
   security_group_id = aws_security_group.alb_sg.id
 }
@@ -362,7 +362,7 @@ resource "aws_security_group_rule" "alb_sg_ingress_rule_8080" {
   type              = "ingress"
   from_port         = 8080
   to_port           = 8080
-  protocol          = "http"
+  protocol          = "tcp"
   cidr_blocks       = [var.cidr_blocks.my_public_ip_cidr_block]
   security_group_id = aws_security_group.alb_sg.id
 }
@@ -372,7 +372,7 @@ resource "aws_security_group_rule" "alb_sg_ingress_rule_8929" {
   type              = "ingress"
   from_port         = 8929
   to_port           = 8929
-  protocol          = "http"
+  protocol          = "tcp"
   cidr_blocks       = [var.cidr_blocks.my_public_ip_cidr_block]
   security_group_id = aws_security_group.alb_sg.id
 }
@@ -382,7 +382,7 @@ resource "aws_security_group_rule" "alb_sg_egress_rule_80" {
   type                     = "egress"
   from_port                = 80
   to_port                  = 80
-  protocol                 = "http"
+  protocol                 = "tcp"
   source_security_group_id = aws_security_group.web_sg.id
   security_group_id        = aws_security_group.alb_sg.id
 }
@@ -392,7 +392,7 @@ resource "aws_security_group_rule" "alb_sg_egress_rule_443" {
   type                     = "egress"
   from_port                = 443
   to_port                  = 443
-  protocol                 = "https"
+  protocol                 = "tcp"
   source_security_group_id = aws_security_group.web_sg.id
   security_group_id        = aws_security_group.alb_sg.id
 }
@@ -402,7 +402,7 @@ resource "aws_security_group_rule" "alb_sg_egress_rule_8080" {
   type                     = "egress"
   from_port                = 8080
   to_port                  = 8080
-  protocol                 = "http"
+  protocol                 = "tcp"
   source_security_group_id = aws_security_group.web_sg.id
   security_group_id        = aws_security_group.alb_sg.id
 }
@@ -412,7 +412,7 @@ resource "aws_security_group_rule" "alb_sg_egress_rule_8929" {
   type                     = "egress"
   from_port                = 8929
   to_port                  = 8929
-  protocol                 = "http"
+  protocol                 = "tcp"
   source_security_group_id = aws_security_group.web_sg.id
   security_group_id        = aws_security_group.alb_sg.id
 }
