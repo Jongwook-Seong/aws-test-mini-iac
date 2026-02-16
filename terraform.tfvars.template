@@ -1,0 +1,15 @@
+access_key = ${access_key}
+secret_key = ${secret_key}
+region     = "ap-northeast-2"
+
+availability_zone = "ap-northeast-2a"
+
+key_name = ${key_name}
+
+resource_name_prefix = "tfbase"
+
+vpc_cidr_block          = "10.0.0.0/16"
+my_public_ip_cidr_block = ${my_public_ip_cidr_block}
+
+ubuntu_ami           = "ami-0130d8d35bcd2d433"
+ubuntu_instance_type = "t3.micro"
