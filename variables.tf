@@ -13,7 +13,12 @@ variable "region" {
   description = "The region of the AWS account"
 }
 
-variable "availability_zone" {
+variable "availability_zone_a" {
+  type        = string
+  description = "The availability zone of the subnet"
+}
+
+variable "availability_zone_c" {
   type        = string
   description = "The availability zone of the subnet"
 }

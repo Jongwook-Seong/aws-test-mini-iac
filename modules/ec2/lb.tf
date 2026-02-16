@@ -4,7 +4,7 @@ resource "aws_lb" "alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
-  subnets            = [var.vpc.pub_subnet_id]
+  subnets            = [var.vpc.pub_subnet_01_id, var.vpc.pub_subnet_02_id]
 
   enable_deletion_protection = false
 
@@ -111,7 +111,7 @@ resource "aws_lb" "nlb" {
   internal           = true
   load_balancer_type = "network"
   security_groups    = [aws_security_group.nlb_sg.id]
-  subnets            = [var.vpc.pri_subnet_id]
+  subnets            = [var.vpc.pri_subnet_01_id, var.vpc.pri_subnet_02_id]
 
   enable_deletion_protection = false
 

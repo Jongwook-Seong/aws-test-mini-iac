@@ -24,7 +24,7 @@ resource "aws_internet_gateway" "main_igw" {
 
 resource "aws_nat_gateway" "main_natgw" {
   allocation_id = aws_eip.main_eip[0].id
-  subnet_id     = aws_subnet.pub_subnet.id
+  subnet_id     = aws_subnet.pub_subnet_01.id
   tags = {
     Name = var.vpc.natgw_name
   }

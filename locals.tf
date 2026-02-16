@@ -9,8 +9,10 @@ locals {
   pri_rtb_name    = "${var.resource_name_prefix}-pri-rtb"
 
   bastion_server_name = "${var.resource_name_prefix}-bastion-server"
-  web_server_name     = "${var.resource_name_prefix}-web-server"
-  was_server_name     = "${var.resource_name_prefix}-was-server"
+  web01_server_name   = "${var.resource_name_prefix}-web01-server"
+  web02_server_name   = "${var.resource_name_prefix}-web02-server"
+  was01_server_name   = "${var.resource_name_prefix}-was01-server"
+  was02_server_name   = "${var.resource_name_prefix}-was02-server"
   bastion_sg_name     = "${var.resource_name_prefix}-bastion-sg"
 
   web_sg_name = "${var.resource_name_prefix}-web-sg"
@@ -27,23 +29,28 @@ locals {
   nlb_listener_name = "${var.resource_name_prefix}-nlb-listener"
   nlb_tg_name       = "${var.resource_name_prefix}-nlb-tg"
 
-  pub_subnet_cidr_block = cidrsubnet(var.vpc_cidr_block, 8, 0)
-  pri_subnet_cidr_block = cidrsubnet(var.vpc_cidr_block, 8, 1)
+  pub_subnet_01_cidr_block = cidrsubnet(var.vpc_cidr_block, 8, 0)
+  pub_subnet_02_cidr_block = cidrsubnet(var.vpc_cidr_block, 8, 10)
+  pri_subnet_01_cidr_block = cidrsubnet(var.vpc_cidr_block, 8, 1)
+  pri_subnet_02_cidr_block = cidrsubnet(var.vpc_cidr_block, 8, 11)
 
   any_ip_cidr_block = "0.0.0.0/0"
 
   vpc = {
-    availability_zone = var.availability_zone
-    vpc_name          = local.vpc_name
-    igw_name          = local.igw_name
-    natgw_name        = local.natgw_name
+    availability_zone_a = var.availability_zone_a
+    availability_zone_c = var.availability_zone_c
+    vpc_name            = local.vpc_name
+    igw_name            = local.igw_name
+    natgw_name          = local.natgw_name
   }
 
   subnet = {
-    pub_subnet_name       = local.pub_subnet_name
-    pri_subnet_name       = local.pri_subnet_name
-    pub_subnet_cidr_block = local.pub_subnet_cidr_block
-    pri_subnet_cidr_block = local.pri_subnet_cidr_block
+    pub_subnet_name          = local.pub_subnet_name
+    pri_subnet_name          = local.pri_subnet_name
+    pub_subnet_01_cidr_block = local.pub_subnet_01_cidr_block
+    pub_subnet_02_cidr_block = local.pub_subnet_02_cidr_block
+    pri_subnet_01_cidr_block = local.pri_subnet_01_cidr_block
+    pri_subnet_02_cidr_block = local.pri_subnet_02_cidr_block
   }
 
   rtb = {
@@ -52,11 +59,13 @@ locals {
   }
 
   cidr_blocks = {
-    any_ip_cidr_block       = local.any_ip_cidr_block
-    my_public_ip_cidr_block = var.my_public_ip_cidr_block
-    vpc_cidr_block          = var.vpc_cidr_block
-    pub_subnet_cidr_block   = local.pub_subnet_cidr_block
-    pri_subnet_cidr_block   = local.pri_subnet_cidr_block
+    any_ip_cidr_block        = local.any_ip_cidr_block
+    my_public_ip_cidr_block  = var.my_public_ip_cidr_block
+    vpc_cidr_block           = var.vpc_cidr_block
+    pub_subnet_01_cidr_block = local.pub_subnet_01_cidr_block
+    pub_subnet_02_cidr_block = local.pub_subnet_02_cidr_block
+    pri_subnet_01_cidr_block = local.pri_subnet_01_cidr_block
+    pri_subnet_02_cidr_block = local.pri_subnet_02_cidr_block
   }
 
   instance = {
@@ -70,8 +79,10 @@ locals {
     is_bastion_exist    = var.is_bastion_exist
     key_name            = var.key_name
     bastion_server_name = local.bastion_server_name
-    web_server_name     = local.web_server_name
-    was_server_name     = local.was_server_name
+    web01_server_name   = local.web01_server_name
+    web02_server_name   = local.web02_server_name
+    was01_server_name   = local.was01_server_name
+    was02_server_name   = local.was02_server_name
   }
 
   sg = {
@@ -85,12 +96,13 @@ locals {
   }
 
   elb = {
-    alb_name          = local.alb_name
-    alb_listener_name = local.alb_listener_name
-    alb_tg_name       = local.alb_tg_name
-    nlb_name          = local.nlb_name
-    nlb_listener_name = local.nlb_listener_name
-    nlb_tg_name       = local.nlb_tg_name
-    availability_zone = var.availability_zone
+    alb_name            = local.alb_name
+    alb_listener_name   = local.alb_listener_name
+    alb_tg_name         = local.alb_tg_name
+    nlb_name            = local.nlb_name
+    nlb_listener_name   = local.nlb_listener_name
+    nlb_tg_name         = local.nlb_tg_name
+    availability_zone_a = var.availability_zone_a
+    availability_zone_c = var.availability_zone_c
   }
 }

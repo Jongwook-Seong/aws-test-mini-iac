@@ -20,7 +20,7 @@ resource "aws_instance" "bastion_server" {
   count           = var.ec2.is_bastion_exist ? 1 : 0
   ami             = var.instance.ami.ubuntu
   instance_type   = var.instance.instance_type
-  subnet_id       = var.vpc.pub_subnet_id
+  subnet_id       = var.vpc.pub_subnet_01_id
   security_groups = [aws_security_group.bastion_sg.id]
   key_name        = aws_key_pair.key_pair.key_name
   tags = {
@@ -38,34 +38,34 @@ resource "aws_eip" "bastion_eip" {
 }
 
 # Web Server
-resource "aws_instance" "web_server" {
+resource "aws_instance" "web01_server" {
   ami             = var.instance.ami.ubuntu
   instance_type   = var.instance.instance_type
-  subnet_id       = var.vpc.pri_subnet_id
+  subnet_id       = var.vpc.pri_subnet_01_id
   security_groups = var.ec2.is_bastion_exist ? [aws_security_group.web_sg.id, aws_security_group.ssh_sg.id] : [aws_security_group.web_sg.id, aws_security_group.ssh_sg.id, aws_security_group.bastion_sg.id]
   key_name        = var.ec2.key_name
   tags = {
-    Name = var.ec2.web_server_name
+    Name = var.ec2.web01_server_name
   }
 }
 
 resource "aws_eip" "web_as_bastion_eip" {
   count    = var.ec2.is_bastion_exist ? 0 : 1
-  instance = aws_instance.web_server.id
+  instance = aws_instance.web01_server.id
   domain   = "vpc"
   tags = {
-    Name = "${var.ec2.web_server_name}-as-bastion-eip"
+    Name = "${var.ec2.web01_server_name}-as-bastion-eip"
   }
 }
 
 # WAS Server
-resource "aws_instance" "was_server" {
+resource "aws_instance" "was01_server" {
   ami             = var.instance.ami.ubuntu
   instance_type   = var.instance.instance_type
-  subnet_id       = var.vpc.pri_subnet_id
+  subnet_id       = var.vpc.pri_subnet_01_id
   security_groups = [aws_security_group.was_sg.id, aws_security_group.ssh_sg.id]
   key_name        = var.ec2.key_name
   tags = {
-    Name = var.ec2.was_server_name
+    Name = var.ec2.was01_server_name
   }
 }

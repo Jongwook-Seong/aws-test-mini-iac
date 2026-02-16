@@ -13,12 +13,22 @@ output "natgw_id" {
   description = "The ID of the NAT Gateway"
 }
 
-output "pub_subnet_id" {
-  value = aws_subnet.pub_subnet.id
-  description = "The ID of the public subnet"
+output "pub_subnet_01_id" {
+  value = aws_subnet.pub_subnet_01.id
+  description = "The ID of the public subnet-01"
 }
 
-output "pri_subnet_id" {
-  value = aws_subnet.pri_subnet.id
-  description = "The ID of the private subnet"
+output "pub_subnet_02_id" {
+  value = aws_subnet.pub_subnet_02.id
+  description = "The ID of the public subnet-02"
+}
+
+output "pri_subnet_01_id" {
+  value = aws_subnet.pri_subnet_01.id
+  description = "The ID of the private subnet-01"
+}
+
+output "pri_subnet_02_id" {
+  value = aws_subnet.pri_subnet_02.id
+  description = "The ID of the private subnet-02"
 }

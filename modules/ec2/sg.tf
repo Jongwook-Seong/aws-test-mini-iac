@@ -273,7 +273,7 @@ resource "aws_security_group_rule" "was_sg_egress_rule_icmp" {
   from_port         = -1
   to_port           = -1
   protocol          = "icmp"
-  cidr_blocks       = [var.cidr_blocks.pub_subnet_cidr_block]
+  cidr_blocks       = [var.cidr_blocks.pub_subnet_01_cidr_block, var.cidr_blocks.pub_subnet_02_cidr_block]
   security_group_id = aws_security_group.was_sg.id
 }
 
