@@ -41,7 +41,7 @@ resource "aws_eip" "bastion_eip" {
 resource "aws_instance" "web01_server" {
   ami             = var.instance.ami.ubuntu
   instance_type   = var.instance.instance_type
-  subnet_id       = var.vpc.pri_subnet_01_id
+  subnet_id       = var.vpc.pub_subnet_01_id
   security_groups = var.ec2.is_bastion_exist ? [aws_security_group.web_sg.id, aws_security_group.ssh_sg.id] : [aws_security_group.web_sg.id, aws_security_group.ssh_sg.id, aws_security_group.bastion_sg.id]
   key_name        = aws_key_pair.key_pair.key_name
   tags = {
