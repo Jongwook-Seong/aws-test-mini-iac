@@ -47,8 +47,13 @@ resource "aws_route_table" "pub_route_table" {
   }
 }
 
-resource "aws_route_table_association" "pub_route_table_association" {
+resource "aws_route_table_association" "pub_01_route_table_association" {
   subnet_id      = aws_subnet.pub_subnet_01.id
+  route_table_id = aws_route_table.pub_route_table.id
+}
+
+resource "aws_route_table_association" "pub_02_route_table_association" {
+  subnet_id      = aws_subnet.pub_subnet_02.id
   route_table_id = aws_route_table.pub_route_table.id
 }
 
@@ -65,7 +70,12 @@ resource "aws_route_table" "pri_route_table" {
   }
 }
 
-resource "aws_route_table_association" "pri_route_table_association" {
+resource "aws_route_table_association" "pri_01_route_table_association" {
   subnet_id      = aws_subnet.pri_subnet_01.id
+  route_table_id = aws_route_table.pri_route_table.id
+}
+
+resource "aws_route_table_association" "pri_02_route_table_association" {
+  subnet_id      = aws_subnet.pri_subnet_02.id
   route_table_id = aws_route_table.pri_route_table.id
 }

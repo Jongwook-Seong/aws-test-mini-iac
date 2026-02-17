@@ -18,7 +18,7 @@ resource "aws_lb_target_group" "alb_tg_80" {
 
   tags = {
     Name        = "${var.elb.alb_tg_name}-80"
-    Description = "ALB Target Group for HTTP (80)"
+    Description = "ALB Target Group for HTTP"
   }
 }
 
@@ -48,7 +48,7 @@ resource "aws_lb_target_group" "alb_tg_443" {
 
   tags = {
     Name        = "${var.elb.alb_tg_name}-443"
-    Description = "ALB Target Group for HTTPS (443)"
+    Description = "ALB Target Group for HTTPS"
   }
 }
 
@@ -78,7 +78,7 @@ resource "aws_lb_target_group" "alb_tg_8080" {
 
   tags = {
     Name        = "${var.elb.alb_tg_name}-8080"
-    Description = "ALB Target Group for HTTP (8080 : Jenkins)"
+    Description = "ALB Target Group for 8080 Jenkins"
   }
 }
 
@@ -108,7 +108,7 @@ resource "aws_lb_target_group" "alb_tg_8929" {
 
   tags = {
     Name        = "${var.elb.alb_tg_name}-8929"
-    Description = "ALB Target Group for HTTP (8929 : GitLab)"
+    Description = "ALB Target Group for 8929 GitLab"
   }
 }
 
@@ -138,7 +138,7 @@ resource "aws_lb_target_group" "nlb_tg_8019" {
 
   tags = {
     Name        = "${var.elb.nlb_tg_name}-8019"
-    Description = "NLB Target Group for TCP (8019 : Service)"
+    Description = "NLB Target Group for 8019 Service"
   }
 }
 
@@ -168,7 +168,7 @@ resource "aws_lb_target_group" "nlb_tg_8080" {
 
   tags = {
     Name        = "${var.elb.nlb_tg_name}-8080"
-    Description = "NLB Target Group for TCP (8080 : Jenkins)"
+    Description = "NLB Target Group for 8080 Jenkins"
   }
 }
 
@@ -198,7 +198,7 @@ resource "aws_lb_target_group" "nlb_tg_8929" {
 
   tags = {
     Name        = "${var.elb.nlb_tg_name}-8929"
-    Description = "NLB Target Group for TCP (8929 : GitLab)"
+    Description = "NLB Target Group for 8929 GitLab"
   }
 }
 

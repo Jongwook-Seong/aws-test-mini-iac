@@ -20,7 +20,7 @@ resource "aws_lb_listener" "alb_listener_http" {
   protocol          = "HTTP"
 
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.alb_tg_80.arn
   }
 }
@@ -31,8 +31,11 @@ resource "aws_lb_listener" "alb_listener_https" {
   port              = 443
   protocol          = "HTTPS"
 
+  certificate_arn = data.aws_acm_certificate.issued.arn
+  ssl_policy      = "ELBSecurityPolicy-2016-08"
+
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.alb_tg_443.arn
   }
 }
@@ -127,7 +130,7 @@ resource "aws_lb_listener" "nlb_listener_8019" {
   protocol          = "TCP"
 
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.nlb_tg_8019.arn
   }
 }
@@ -139,7 +142,7 @@ resource "aws_lb_listener" "nlb_listener_8080" {
   protocol          = "TCP"
 
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.nlb_tg_8080.arn
   }
 }
@@ -151,7 +154,7 @@ resource "aws_lb_listener" "nlb_listener_8929" {
   protocol          = "TCP"
 
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.nlb_tg_8929.arn
   }
 }

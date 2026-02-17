@@ -43,7 +43,7 @@ resource "aws_instance" "web01_server" {
   instance_type   = var.instance.instance_type
   subnet_id       = var.vpc.pri_subnet_01_id
   security_groups = var.ec2.is_bastion_exist ? [aws_security_group.web_sg.id, aws_security_group.ssh_sg.id] : [aws_security_group.web_sg.id, aws_security_group.ssh_sg.id, aws_security_group.bastion_sg.id]
-  key_name        = var.ec2.key_name
+  key_name        = aws_key_pair.key_pair.key_name
   tags = {
     Name = var.ec2.web01_server_name
   }
@@ -64,7 +64,7 @@ resource "aws_instance" "was01_server" {
   instance_type   = var.instance.instance_type
   subnet_id       = var.vpc.pri_subnet_01_id
   security_groups = [aws_security_group.was_sg.id, aws_security_group.ssh_sg.id]
-  key_name        = var.ec2.key_name
+  key_name        = aws_key_pair.key_pair.key_name
   tags = {
     Name = var.ec2.was01_server_name
   }
